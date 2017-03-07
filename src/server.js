@@ -16,16 +16,17 @@ var Server = {
     if( !process.env.NODE_ENV ){
       process.env.NODE_ENV = 'development';
     }
+    if( !process.env.ETHERSCAN_TOKEN ){
+      console.log(`ETHERSCAN_TOKEN not set!`);
+      throw new Error('ETHERSCAN_TOKEN not set!');
+      exit(1)
+    }
 
   },
 
   'start': ()=>{
     Server.init()
-    if( !process.env.NODE_ENV ){
-      process.env.NODE_ENV = 'development';
-    }
 
-    // db.connect();
     app.use(cors());
 
     app.use(compress());

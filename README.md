@@ -15,15 +15,16 @@ This is a stupid interface for make ethereum transaction
 
 ENV to be set:
 
-```
-NODE_ENV
-NODE_PORT
-NODE_IP
-ETHER_ADDRESS_FROM
-ETHER_ADDRESS_FROM_PK
-ETHER_ADDRESS_TO
-ETHERSCAN_TOKEN
-```
+var name              | description
+----------------------|--------------------------------------------------------------------------
+NODE_ENV              | production/development, on development will make tx on ropsten network
+NODE_PORT             | the service port (default 9000)
+NODE_IP               | the expressjs server IP (default 0.0.0.0)
+ETHER_ADDRESS_FROM    | the ethereum wallet FROM address
+ETHER_ADDRESS_FROM_PK | the wallet private key (for tx sign)
+ETHER_ADDRESS_TO      | the ethereum wallet TO address
+ETHERSCAN_TOKEN       | the etherscan token ([don't you have one?](https://etherscan.io))
+
 
 ### USAGE
 
@@ -35,8 +36,12 @@ cd seta
 # BUILD
 docker build -t ad2014/seta .
 
+# Configure env-file
+cp config-sample.env config.env
+vim config.env #Adjust values
+
 # RUN
-docker run -p 8080:9000 -d ad2014/seta
+docker run --env-file ./config.env -p 8080:9000 -d ad2014/seta
 
 # TEST
 curl -X GET localhost:8080/

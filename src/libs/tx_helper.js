@@ -7,19 +7,22 @@ var tx = require('ethereumjs-tx');
 var web3 = new Web3();
 
 const ETHERSCAN_TOKEN = process.env.ETHERSCAN_TOKEN;
-if( process.env.NODE_ENV === 'development' ){
-  const ETHERSCAN_CHAIN = 'testnet';
-} else {
-  const ETHERSCAN_CHAIN = 'mainnet';
-}
+var ETHERSCAN_CHAIN = 'testnet';
 
 var tx_helper = (fromAddress, fromPk, toAddress, valueWei, data) => {
+  if( process.env.NODE_ENV !== 'development' ){
+    ETHERSCAN_CHAIN = 'mainnet';
+  }
+  console.log(`
+${process.env.NODE_ENV}
+${ETHERSCAN_TOKEN}
+${ETHERSCAN_CHAIN}
+    `);
   api = api.init(ETHERSCAN_TOKEN, ETHERSCAN_CHAIN);
 
   return new Promise( (resolve, reject)=>{
 
     var amount = web3.toWei(valueWei, 'kwei');
-
     Promise.all([
       api.proxy.eth_gasPrice(),
       api.proxy.eth_getTransactionCount(fromAddress)
