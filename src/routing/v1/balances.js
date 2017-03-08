@@ -5,7 +5,7 @@ var Promise = require('bluebird');
 var balances = {
   'getAll': (req, res, next)=>{
     let testnet = false;
-    if( process.env.NODE_ENV==='production' && req.body.testnet && req.body.testnet===true){
+    if(req.body.testnet && req.body.testnet===true){
       testnet = true;
     }
     var api = etherscan_helper.generate(testnet);

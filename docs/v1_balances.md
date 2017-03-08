@@ -7,7 +7,10 @@ this endpoint is used to check balances. Verbs are:
 
 ###### Params
 
-none
+field  | required | description
+-------|----------|-----------------
+testnet| no       | force the use of `ropsten network` (used when NODE_ENV==='production')
+
 
 ###### Response
 
