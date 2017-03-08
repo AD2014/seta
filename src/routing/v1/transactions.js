@@ -2,7 +2,7 @@
 
 var transactions = {
   'getAll': (req, res, next)=>{
-    res.json({ 'status': 'not implemented' });
+    res.status(501).json({ 'status': 'not implemented' });
     return next();
   },
 
@@ -33,7 +33,7 @@ var transactions = {
   },
 
   'getOne': (req, res, next)=>{
-    res.json({ 'status': 'not implemented' });
+    res.status(501).json({ 'status': 'not implemented' });
     return next();
   }
 }

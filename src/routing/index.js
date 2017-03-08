@@ -2,6 +2,7 @@
 
 var pkg = require('../../package.json');
 var transactions = require('./transactions');
+var balances = require('./balances');
 
 module.exports = (app) => {
   app.get('/', (req, res, next) => {
@@ -10,5 +11,6 @@ module.exports = (app) => {
   });
 
   transactions(app);
+  balances(app);
 
 };

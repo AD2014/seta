@@ -13,6 +13,7 @@ endpoint                                       | description
 -----------------------------------------------|----------------------------------
 [/](./docs/home.md)                            | home (testing purpose)
 [/v1/transactions](./docs/v1_transactions.md)  | perform transactions
+[/v1/balances](./docs/v1_balances.md)  | retrieve `ETHER_ADDRESS_FROM` and `ETHER_ADDRESS_TO` wallet's balance
 
 
 ### CONFIG
