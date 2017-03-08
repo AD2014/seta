@@ -3,12 +3,16 @@
 
 ### WHAT
 
-This is a stupid interface for make ethereum transaction
+This is a stupid interface for make ethereum transaction.
+
+Another way to say: etherscan webservices wrapped in a microservice API REST.
 
 ### HOW
 
-> TODO
-> endpoints description
+endpoint                                       | description
+-----------------------------------------------|----------------------------------
+[/](./docs/home.md)                            | home (testing purpose)
+[/v1/transactions](./docs/v1_transactions.md)  | perform transactions
 
 
 ### CONFIG
@@ -28,21 +32,40 @@ ETHERSCAN_TOKEN       | the etherscan token ([don't you have one?](https://ether
 
 ### USAGE
 
+prepare the stuff:
+
 ```shell
 # Clone the repo
 git clone https://github.com/AD2014/seta.git
 cd seta
 
-# BUILD
-docker build -t ad2014/seta .
-
 # Configure env-file
 cp config-sample.env config.env
-vim config.env #Adjust values
+vim config.env # edit with your values
+
+```
+
+then you can use the:
+
+- docker way
+
+```shell
+# BUILD
+docker build -t ad2014/seta .
 
 # RUN
 docker run --env-file ./config.env -p 8080:9000 -d ad2014/seta
 
 # TEST
 curl -X GET localhost:8080/
+```
+
+- development way
+
+```shell
+# Launch local service
+export $(cat config.env | xargs) && node index.js
+
+# TEST
+curl -X GET localhost:9000/
 ```

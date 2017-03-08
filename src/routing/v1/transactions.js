@@ -11,13 +11,19 @@ var transactions = {
       res.status(400).json({'message': 'txData is mandatory'});
       return next();
     }
+    let testnet = false;
+
+    if( req.body.testnet && req.body.testnet===true){
+      testnet = true;
+    }
+
     var fromAddress = process.env.ETHER_ADDRESS_FROM;
     var fromPk = process.env.ETHER_ADDRESS_FROM_PK;
     var toAddress = process.env.ETHER_ADDRESS_TO;
     let tx_helper = require('../../libs/tx_helper');
-    tx_helper(fromAddress, fromPk, toAddress, 1, req.body.txData).then(
+    tx_helper(fromAddress, fromPk, toAddress, 1, req.body.txData, testnet).then(
       (result)=>{
-        res.json(result);
+        res.status(201).json(result);
         return next();
       }
     ).catch( function(e) {
